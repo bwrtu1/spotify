@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Song Recommender</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Spotify Song Recommendatiton</h1>
+    <form method="post">
+        <label for="song_link">Şarkı Linki:</label>
+        <input type="text" name="song_link" required>
+        <br>
+        <label for="num_recommendations">Kaç tane öneri istiyorsun?:</label>
+        <input type="text" name="num_recommendations"  placeholder="min 10">
+        <br>
+        <label for="target_speechiness">Target Speechiness (0-1):</label>
+        <input type="text" name="target_speechiness">
+        <br>
+        <label for="target_popularity">Target Popularity (0-100):</label>
+        <input type="text" name="target_popularity" >
+        <br>
+        <label for="target_valence">Target Valence (musical positiviness more valance more happiness, cheerfull) (0-1):</label>
+        <input type="text" name="target_valence" >
+        <br>
+        <label for="max_acousticness">Max Acousticness (0-1):</label>
+        <input type="text" name="max_acousticness">
+        <br>
+        <label for="target_acousticness">Target Acousticness (0-1):</label>
+        <input type="text" name="target_acousticness" >
+        <br>
+        <label for="instrumentalness">Instrumentalness (0-1):</label>
+        <input type="text" name="instrumentalness" >
+        <br>
+        <label for="target_loudness">Target Loudness (-60 to 0):</label>
+        <input type="text" name="target_loudness" >
+        <br>
+        <label for="target_danceability">Target Danceability (0-1):</label>
+        <input type="text" name="target_danceability" >
+        <br>
+        <label for="target_energy">Target Energy (0-1) (balances between danceability):</label>
+        <input type="text" name="target_energy"  >
+        <br>
+        <label for="target_liveness">Target Liveness Target Liveness (0-1):</label>
+        <input type="text" name="target_liveness">
+        <br>
+        <button type="submit">Önerileri Al</button>
+    </form>
+
+    {% if recommended_tracks %}
+    <h2>Önerilen Şarkılar:</h2>
+    <ul>
+        {% for track in recommended_tracks %}
+        <li>{{ track.name }} - {{ track.artist }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</body>
+</html>
+
